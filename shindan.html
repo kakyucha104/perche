@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自分の声確認診断 | perche</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose:    #c07b72;
+    --rose-l:  #e8ccc9;
+    --rose-ll: #f5edeb;
+    --beige:   #faf6f1;
+    --brown:   #2c1810;
+    --brown-m: #6b4c42;
+    --brown-l: #a07060;
+    --line-h:  1px solid rgba(192,123,114,.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--beige);
+    color: var(--brown);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    text-align: center;
+    padding: 28px 20px 20px;
+    border-bottom: var(--line-h);
+  }
+  .site-header .logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.5rem;
+    letter-spacing: .18em;
+    color: var(--brown);
+    text-decoration: none;
+  }
+
+  /* ── Wrapper ── */
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── Section visibility ── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ─────────────────────────────────────
+     INTRO SCREEN
+  ───────────────────────────────────── */
+  .intro-hero {
+    text-align: center;
+    padding: 56px 0 48px;
+  }
+  .intro-hero .badge {
+    display: inline-block;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    color: var(--rose);
+    border: 1px solid var(--rose-l);
+    border-radius: 40px;
+    padding: 5px 18px;
+    margin-bottom: 28px;
+  }
+  .intro-hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    letter-spacing: .06em;
+  }
+  .intro-hero .sub {
+    font-size: .9rem;
+    color: var(--brown-m);
+    line-height: 1.8;
+    max-width: 460px;
+    margin: 0 auto 36px;
+  }
+  .intro-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 36px;
+    box-shadow: 0 4px 24px rgba(44,24,16,.07);
+    text-align: left;
+  }
+  .intro-card h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--rose);
+    margin-bottom: 16px;
+    letter-spacing: .06em;
+  }
+  .intro-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .intro-card li {
+    font-size: .88rem;
+    color: var(--brown-m);
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+  }
+  .intro-card li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--rose-l);
+    font-size: .6rem;
+    top: 4px;
+  }
+  .intro-note {
+    font-size: .78rem;
+    color: #aaa;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  /* ── Button styles ── */
+  .btn-start {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    background: var(--rose);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 18px 40px;
+    font-size: 1rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    letter-spacing: .1em;
+    cursor: pointer;
+    transition: background .25s, transform .15s;
+    box-shadow: 0 6px 20px rgba(192,123,114,.35);
+  }
+  .btn-start:hover { background: #ad6860; transform: translateY(-2px); }
+
+  /* ─────────────────────────────────────
+     QUIZ SCREEN
+  ───────────────────────────────────── */
+  .quiz-header {
+    padding: 32px 0 8px;
+    text-align: center;
+  }
+  .quiz-meta {
+    font-size: .78rem;
+    color: var(--brown-l);
+    letter-spacing: .08em;
+    margin-bottom: 12px;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--rose-ll);
+    border-radius: 4px;
+    margin-bottom: 36px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--rose);
+    border-radius: 4px;
+    transition: width .45s ease;
+  }
+
+  .question-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 36px 32px 28px;
+    box-shadow: 0 4px 24px rgba(44,24,16,.07);
+    margin-bottom: 28px;
+    animation: fadeUp .4s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(14px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  .question-num {
+    font-size: .7rem;
+    letter-spacing: .14em;
+    color: var(--rose);
+    margin-bottom: 14px;
+  }
+  .question-text {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .choice-btn {
+    background: var(--beige);
+    border: 1.5px solid var(--rose-ll);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: left;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: .88rem;
+    color: var(--brown-m);
+    line-height: 1.65;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .choice-btn:hover,
+  .choice-btn.selected {
+    border-color: var(--rose);
+    background: var(--rose-ll);
+    color: var(--brown);
+  }
+  .choice-btn.selected {
+    font-weight: 500;
+  }
+
+  /* ─────────────────────────────────────
+     RESULT SCREEN
+  ───────────────────────────────────── */
+  .result-screen { animation: fadeUp .5s ease both; }
+
+  .result-hero {
+    text-align: center;
+    padding: 48px 0 32px;
+  }
+  .result-type-badge {
+    display: inline-block;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    color: var(--rose);
+    border: 1px solid var(--rose-l);
+    border-radius: 40px;
+    padding: 5px 18px;
+    margin-bottom: 20px;
+  }
+  .result-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    letter-spacing: .04em;
+  }
+  .result-type-label {
+    font-size: .85rem;
+    color: var(--rose);
+    letter-spacing: .08em;
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+
+  .result-illust {
+    font-size: 4rem;
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .result-message {
+    background: #fff;
+    border-radius: 18px;
+    padding: 36px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 24px rgba(44,24,16,.07);
+    line-height: 2;
+    font-size: .92rem;
+    color: var(--brown-m);
+  }
+  .result-message .from {
+    display: block;
+    margin-top: 20px;
+    font-size: .8rem;
+    color: var(--brown-l);
+    text-align: right;
+    font-style: italic;
+  }
+
+  .result-cta {
+    background: var(--rose-ll);
+    border-radius: 18px;
+    padding: 28px 28px;
+    margin-bottom: 28px;
+  }
+  .result-cta h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--rose);
+    margin-bottom: 16px;
+    letter-spacing: .06em;
+  }
+  .cta-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cta-link {
+    display: block;
+    background: #fff;
+    border: 1.5px solid var(--rose-ll);
+    border-radius: 12px;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--brown);
+    font-size: .88rem;
+    font-weight: 500;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cta-link:hover {
+    border-color: var(--rose);
+    background: var(--rose-ll);
+  }
+  .cta-link .arrow {
+    margin-left: auto;
+    color: var(--rose);
+    font-size: 1rem;
+  }
+
+  .btn-retry {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 16px auto 0;
+    background: transparent;
+    color: var(--brown-l);
+    border: 1.5px solid var(--rose-ll);
+    border-radius: 50px;
+    padding: 13px 30px;
+    font-size: .85rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    letter-spacing: .06em;
+    transition: all .2s;
+  }
+  .btn-retry:hover { border-color: var(--rose); color: var(--rose); }
+
+  /* ── Footer ── */
+  .site-footer {
+    text-align: center;
+    padding: 32px 20px;
+    font-size: .72rem;
+    color: #bbb;
+    border-top: var(--line-h);
+    margin-top: 40px;
+  }
+
+  @media (max-width: 480px) {
+    .question-card { padding: 28px 20px 22px; }
+    .result-message { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <a href="./index.html" class="logo">perche</a>
+</header>
+
+<!-- ══════════════════════════════════════
+     INTRO SCREEN
+══════════════════════════════════════ -->
+<div id="screen-intro" class="screen active">
+  <div class="wrap">
+    <div class="intro-hero">
+      <span class="badge">LINE登録特典 · 無料診断</span>
+      <h1>自分の声確認診断</h1>
+      <p class="sub">
+        あなたは今、どのくらい<br>
+        自分の内なる声と繋がれていますか？<br>
+        7つの問いから、あなたのタイプを診断します。
+      </p>
+    </div>
+
+    <div class="intro-card">
+      <h2>こんな方におすすめです</h2>
+      <ul>
+        <li>「自分が本当にどうしたいのか」わからなくなっている</li>
+        <li>頭ではわかっているのに、なぜか動けない</li>
+        <li>なんとなくモヤモヤするけど、言葉にできない</li>
+        <li>自分の気持ちを大切にしたいと思っている</li>
+      </ul>
+    </div>
+
+    <p class="intro-note">所要時間：約3分 ／ 全7問</p>
+    <button class="btn-start" onclick="startQuiz()">診断をはじめる</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     QUIZ SCREEN
+══════════════════════════════════════ -->
+<div id="screen-quiz" class="screen">
+  <div class="wrap">
+    <div class="quiz-header">
+      <div class="quiz-meta" id="quiz-meta">Q1 / 7</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div id="question-area"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     RESULT SCREEN
+══════════════════════════════════════ -->
+<div id="screen-result" class="screen result-screen">
+  <div class="wrap">
+    <div class="result-hero">
+      <span class="result-type-badge">診断結果</span>
+      <span class="result-illust" id="result-illust"></span>
+      <h1 class="result-title" id="result-title"></h1>
+      <p class="result-type-label" id="result-type-label"></p>
+    </div>
+    <div class="result-message" id="result-message"></div>
+    <div class="result-cta" id="result-cta"></div>
+    <button class="btn-retry" onclick="retry()">もう一度診断する</button>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  &copy; 2024 perche / 橘美湖
+</footer>
+
+<script>
+// ── Questions ──────────────────────────────────────────────────
+// Types: 1=聞こえない / 2=無視してる / 3=わかるけど動けない / 4=大事にしてる
+
+const questions = [
+  {
+    text: "何かを決めるとき、どんなふうに決めていますか？",
+    choices: [
+      { text: "何を感じているかよくわからなくて、とりあえず周りに合わせる",    type: 1 },
+      { text: "本当はこうしたいと感じるけど、その気持ちを後回しにしてしまう",  type: 2 },
+      { text: "やりたいことはわかっているのに、なかなか踏み出せない",           type: 3 },
+      { text: "自分の感覚を信じて、その都度丁寧に選ぶようにしている",           type: 4 },
+    ]
+  },
+  {
+    text: "「本当はどうしたいの？」と聞かれたとき、どう感じますか？",
+    choices: [
+      { text: "正直、何が「本当」なのかよくわからない",                          type: 1 },
+      { text: "わかってはいるけど、口に出すのが怖い",                            type: 2 },
+      { text: "頭ではわかっているけど、行動に移せない自分がいる",               type: 3 },
+      { text: "自分の「本当」を大切にできていると感じる",                        type: 4 },
+    ]
+  },
+  {
+    text: "疲れているとき、自分の中でどんなことが起きていますか？",
+    choices: [
+      { text: "疲れているのかどうかも、よくわからない",                          type: 1 },
+      { text: "疲れているとわかっているのに、「まだ大丈夫」と無理してしまう",   type: 2 },
+      { text: "休みたいとわかっているのに、休むことへの罪悪感がある",           type: 3 },
+      { text: "疲れを感じたら、自分を大切にするための行動ができる",             type: 4 },
+    ]
+  },
+  {
+    text: "誰かに悩みを相談するとき、どんなふうになりますか？",
+    choices: [
+      { text: "何を相談したいのかがぼんやりしていて、うまく言葉にならない",      type: 1 },
+      { text: "本当に話したいことは隠して、当たり障りのない話をしてしまう",      type: 2 },
+      { text: "話したいことはあるけれど、打ち明けるのをためらってしまう",        type: 3 },
+      { text: "自分の気持ちを整理しながら、素直に話せる",                        type: 4 },
+    ]
+  },
+  {
+    text: "「やりたいこと」について、どう感じていますか？",
+    choices: [
+      { text: "正直、やりたいことが何なのかがわからない",                        type: 1 },
+      { text: "やりたいことはあるけど、「わがまま」な気がして抑えてしまう",      type: 2 },
+      { text: "やりたいことはあるけど、自信がなくて踏み出せない",                type: 3 },
+      { text: "やりたいことに向かって、少しずつでも動けている",                  type: 4 },
+    ]
+  },
+  {
+    text: "自分の気持ちを、言葉にすることはできますか？",
+    choices: [
+      { text: "気持ちを言葉にしようとすると、頭が真っ白になる",                  type: 1 },
+      { text: "言葉にする前に「言わなくていい」と封じ込めてしまう",              type: 2 },
+      { text: "言葉にはできるけど、それを誰かに伝えるのが難しい",                type: 3 },
+      { text: "ゆっくりでも、自分の気持ちを言葉にする習慣がある",                type: 4 },
+    ]
+  },
+  {
+    text: "過去の選択を振り返ったとき、どう感じることが多いですか？",
+    choices: [
+      { text: "自分がなぜその選択をしたのか、あまり記憶にない",                  type: 1 },
+      { text: "「本当はこうしたかった」と後悔することが多い",                    type: 2 },
+      { text: "「あのとき動けていたら…」と思うことがよくある",                   type: 3 },
+      { text: "後悔することもあるけど、そのたびに自分と向き合えている",          type: 4 },
+    ]
+  },
+];
+
+// ── Result definitions ─────────────────────────────────────────
+const results = {
+  1: {
+    illust: "🌑",
+    title: "まだ、声は眠っている",
+    label: "心の声が聞こえない",
+    message: `あなたの内なる声は、消えてしまったわけじゃありません。<br><br>
+長い間、気づかないふりをしてきたことで、声がだんだん小さくなってしまっているだけ。自分の気持ちがわからなくなるのは、あなたが弱いからじゃなくて、それだけ一生懸命に「こうあるべき」を生きてきた証拠です。<br><br>
+その眠っている声に、少しずつ光を当てていきましょう。焦らなくて大丈夫。まずは、声が存在することに気づくことから、一緒に始めませんか。`,
+    from: "— Miko",
+    cta: {
+      title: "まず、ここから一歩",
+      links: [
+        { label: "単発セッション（オープン記念5,000円〜）", icon: "💬", url: "./session.html" },
+        { label: "オンライン瞑想グループ", icon: "🧘", url: "./meditation.html" },
+      ]
+    }
+  },
+  2: {
+    illust: "🌒",
+    title: "声は聞こえてる。\nでも、怖くて見ないふり",
+    label: "心の声は聞こえてるけど、無視してる",
+    message: `あなたはちゃんと、自分の声が聞こえています。<br><br>
+それなのに「こんなこと思っちゃいけない」「わがままかな」と、声にふたをしてしまっていませんか？<br><br>
+その声は、あなたの本音です。封じ込めるのではなく、じっくりと耳を傾けることで、あなたらしい選択が少しずつ見えてきます。声を聞くことは、わがままじゃない。自分を大切にすることなんです。`,
+    from: "— Miko",
+    cta: {
+      title: "声に、ちゃんと向き合ってみよう",
+      links: [
+        { label: "単発セッション（オープン記念5,000円〜）", icon: "💬", url: "./session.html" },
+        { label: "3か月伴走プログラム", icon: "🌱", url: "./program.html" },
+      ]
+    }
+  },
+  3: {
+    illust: "🌓",
+    title: "声はわかってる。\nでも、足が動かない",
+    label: "心の声はわかるけど、動けない",
+    message: `「こうしたい」という気持ちはちゃんとある。でも、一歩踏み出すのが怖い。失敗が怖い。誰かに何か言われるのが怖い。<br><br>
+その怖さは、あなたの声を大切にしたい気持ちの裏返しです。<br><br>
+動けない自分を責めなくていい。その「動けない」には必ず理由があって、そこを一緒に丁寧に見ていくことで、自然と足が動き始める瞬間がきます。`,
+    from: "— Miko",
+    cta: {
+      title: "一緒に、その一歩を探しましょう",
+      links: [
+        { label: "3か月伴走プログラム", icon: "🌱", url: "./program.html" },
+        { label: "単発セッション（オープン記念5,000円〜）", icon: "💬", url: "./session.html" },
+      ]
+    }
+  },
+  4: {
+    illust: "🌕",
+    title: "あなたの声は、\nすでに輝いている",
+    label: "心の声を大事にしてる",
+    message: `あなたはすでに、自分の内なる声と対話する力を持っています。それはとても素晴らしいことです。<br><br>
+これからもその感覚を育て続けながら、もっと豊かに、もっと自由に自分らしく生きることができます。<br><br>
+percheでは、そんなあなたのさらなる輝きを、一緒に育んでいきたいと思っています。仲間たちとの対話の中で、新しい自分に出会いませんか。`,
+    from: "— Miko",
+    cta: {
+      title: "次のステージへ",
+      links: [
+        { label: "オンライン瞑想グループ", icon: "🧘", url: "./meditation.html" },
+        { label: "3か月伴走プログラム", icon: "🌱", url: "./program.html" },
+      ]
+    }
+  },
+};
+
+// ── State ──────────────────────────────────────────────────────
+let current = 0;
+let scores = { 1: 0, 2: 0, 3: 0, 4: 0 };
+
+// ── Functions ──────────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startQuiz() {
+  current = 0;
+  scores = { 1: 0, 2: 0, 3: 0, 4: 0 };
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  const pct = Math.round((current / questions.length) * 100);
+
+  document.getElementById('quiz-meta').textContent = `Q${current + 1} / ${questions.length}`;
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  const area = document.getElementById('question-area');
+  area.innerHTML = `
+    <div class="question-card">
+      <div class="question-num">QUESTION ${current + 1}</div>
+      <p class="question-text">${q.text}</p>
+      <div class="choices">
+        ${q.choices.map((c, i) =>
+          `<button class="choice-btn" onclick="answer(${c.type})">${c.text}</button>`
+        ).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function answer(type) {
+  scores[type]++;
+  current++;
+
+  if (current >= questions.length) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResult() {
+  // Find top type
+  let topType = 1, topScore = 0;
+  for (let t = 1; t <= 4; t++) {
+    if (scores[t] > topScore) { topScore = scores[t]; topType = t; }
+  }
+
+  const r = results[topType];
+
+  document.getElementById('result-illust').textContent = r.illust;
+  document.getElementById('result-title').innerHTML = r.title.replace('\n', '<br>');
+  document.getElementById('result-type-label').textContent = r.label;
+
+  document.getElementById('result-message').innerHTML =
+    r.message + `<span class="from">${r.from}</span>`;
+
+  document.getElementById('result-cta').innerHTML = `
+    <h3>${r.cta.title}</h3>
+    <div class="cta-links">
+      ${r.cta.links.map(l => `
+        <a href="${l.url}" class="cta-link">
+          <span>${l.icon}</span>
+          <span>${l.label}</span>
+          <span class="arrow">→</span>
+        </a>
+      `).join('')}
+    </div>
+  `;
+
+  // Update progress bar to 100%
+  document.getElementById('progress-fill').style.width = '100%';
+
+  showScreen('screen-result');
+}
+
+function retry() {
+  showScreen('screen-intro');
+}
+</script>
+</body>
+</html>
