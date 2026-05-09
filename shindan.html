@@ -710,11 +710,11 @@ function showResult() {
     </div>
   `;
 
-  const lineUrl = `https://line.me/R/oaMessage/@707xjgoy/?text=${encodeURIComponent(r.lineKeyword)}`;
+  const lineUrl = `https://line.me/ti/p/@707xjgoy`;
   document.getElementById('result-line-prompt').innerHTML = `
     <p class="line-lead">＼ もっと深く知りたい方へ ／</p>
-    <p class="line-body">LINEで <span class="line-keyword">${r.lineKeyword}</span> と送ると<br>あなたのタイプへの深掘りメッセージが届きます🌙</p>
-    <a href="${lineUrl}" class="btn-line">💬 LINEで送ってみる</a>
+    <p class="line-body">percheの公式LINEに<br><span class="line-keyword">${r.lineKeyword}</span> と送ると<br>あなたのタイプへの深掘りメッセージが届きます🌙</p>
+    <a href="${lineUrl}" class="btn-line">💬 公式LINEを開く</a>
   `;
 
   // Update progress bar to 100%
