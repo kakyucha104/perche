@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3か月伴走プログラム｜perche</title>
+<meta name="description" content="内なる声と歩む、3か月伴走プログラム。呼吸・対話・内省を通して、本当の自分の声を聴き直す3か月。Inner Voice Navigator 橘美湖。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Noto Sans JP', sans-serif; background: #FAF7F2; color: #4a4a4a; line-height: 1.9; letter-spacing: 0.04em; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: 'Noto Serif JP', serif; font-weight: 400; color: #2d2d2d; }
+
+/* Header */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; background: rgba(250,247,242,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(139,122,60,0.1); transition: box-shadow 0.3s; }
+.header-scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+.logo { font-family: 'Noto Serif JP', serif; font-size: 1.2rem; color: #2d2d2d; text-decoration: none; letter-spacing: 0.1em; }
+.back-btn { font-size: 0.8rem; color: #8B7A3C; text-decoration: none; letter-spacing: 0.1em; border-bottom: 1px solid rgba(139,122,60,0.4); padding-bottom: 1px; }
+
+/* Hero */
+.hero { padding: 140px 24px 100px; text-align: center; background: linear-gradient(160deg, #FAF7F2 0%, #F3EDE4 60%, #EDE5D8 100%); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(168,144,96,0.08) 0%, transparent 70%); pointer-events: none; }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.3em; color: #8B7A3C; text-transform: uppercase; margin-bottom: 1.5rem; }
+.hero h1 { font-size: clamp(1.6rem, 4.5vw, 2.8rem); line-height: 1.6; margin-bottom: 1rem; }
+.hero-sub { font-size: 1rem; color: #6a6a6a; margin-bottom: 2rem; font-family: 'Noto Serif JP', serif; font-style: italic; line-height: 1.9; }
+.hero-questions { background: rgba(255,255,255,0.7); border-radius: 16px; padding: 28px 32px; margin: 0 auto 2.5rem; max-width: 520px; text-align: left; border-left: 3px solid rgba(139,122,60,0.3); }
+.hero-questions p { font-size: 0.9rem; color: #5a5a5a; line-height: 1.9; margin-bottom: 0.5rem; }
+.hero-questions .q { font-family: 'Noto Serif JP', serif; color: #8B7A3C; font-size: 0.95rem; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 2.5rem; }
+.tag { font-size: 0.75rem; letter-spacing: 0.08em; padding: 6px 16px; border-radius: 20px; background: rgba(139,122,60,0.1); color: #8B7A3C; border: 1px solid rgba(139,122,60,0.25); }
+.btn-gold { display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #A89060, #C4A96A); color: #fff; text-decoration: none; border-radius: 30px; font-size: 0.9rem; letter-spacing: 0.12em; border: none; cursor: pointer; transition: opacity 0.3s, transform 0.3s; font-family: 'Noto Sans JP', sans-serif; }
+.btn-gold:hover { opacity: 0.88; transform: translateY(-2px); }
+
+/* Layout */
+.section { padding: 80px 24px; }
+.section-alt { background: #F3EDE4; }
+.section-dark { background: #2d2d2d; }
+.container { max-width: 760px; margin: 0 auto; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: #8B7A3C; margin-bottom: 0.5rem; text-align: center; }
+.section-label-light { color: #C4A96A; }
+.section-title { font-size: clamp(1.4rem, 3.5vw, 2rem); line-height: 1.6; margin-bottom: 2rem; text-align: center; }
+.section-title-light { color: #FAF7F2; }
+.lead { font-size: 0.95rem; line-height: 2.1; color: #5a5a5a; text-align: center; margin-bottom: 2rem; }
+
+/* 大切にしていること */
+.value-block { background: #fff; border-radius: 16px; padding: 40px; margin-top: 2rem; border-left: 3px solid #8B7A3C; }
+.value-block p { font-size: 0.95rem; line-height: 2.2; color: #5a5a5a; }
+.value-accent { color: #8B7A3C; font-family: 'Noto Serif JP', serif; font-size: 1.05rem; }
+.ok-text { margin-top: 1.5rem; padding: 20px; background: rgba(139,122,60,0.06); border-radius: 10px; font-size: 0.9rem; color: #6a6a6a; line-height: 2; text-align: center; }
+
+/* おすすめ */
+.recommend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 2rem; }
+@media (max-width: 560px) { .recommend-grid { grid-template-columns: 1fr; } }
+.recommend-item { display: flex; align-items: flex-start; gap: 10px; background: #fff; border-radius: 12px; padding: 16px 20px; border: 1px solid rgba(139,122,60,0.12); font-size: 0.875rem; line-height: 1.7; }
+.recommend-item::before { content: '✦'; color: #8B7A3C; flex-shrink: 0; margin-top: 2px; font-size: 0.7rem; }
+
+/* 目指すこと */
+.goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 2rem; }
+@media (max-width: 560px) { .goal-grid { grid-template-columns: 1fr; } }
+.goal-item { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 16px 20px; border: 1px solid rgba(196,169,106,0.2); font-size: 0.875rem; line-height: 1.7; color: #e0d8cc; display: flex; gap: 10px; align-items: flex-start; }
+.goal-item::before { content: '○'; color: #C4A96A; flex-shrink: 0; font-size: 0.75rem; margin-top: 3px; }
+
+/* プログラム概要 */
+.summary-box { background: #fff; border-radius: 16px; padding: 36px; border: 1px solid rgba(139,122,60,0.15); margin-top: 2rem; }
+.summary-box h3 { font-size: 1.05rem; margin-bottom: 1.2rem; color: #8B7A3C; letter-spacing: 0.08em; }
+.summary-list { list-style: none; }
+.summary-list li { display: flex; gap: 12px; font-size: 0.9rem; padding: 8px 0; border-bottom: 1px dashed rgba(139,122,60,0.15); }
+.summary-list li:last-child { border-bottom: none; }
+.summary-list .key { color: #8B7A3C; font-size: 0.8rem; letter-spacing: 0.08em; min-width: 120px; flex-shrink: 0; }
+
+/* 3か月の流れ */
+.month-cards { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 2rem; }
+.month-card { background: #fff; border-radius: 16px; padding: 32px; border-top: 3px solid #8B7A3C; }
+.month-badge { display: inline-block; font-size: 0.7rem; letter-spacing: 0.15em; background: rgba(139,122,60,0.1); color: #8B7A3C; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; }
+.month-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
+.month-card .subtitle { font-size: 0.85rem; color: #8B7A3C; margin-bottom: 12px; font-family: 'Noto Serif JP', serif; }
+.month-card p { font-size: 0.875rem; line-height: 2; color: #6a6a6a; margin-bottom: 16px; }
+.theme-list { background: rgba(139,122,60,0.05); border-radius: 10px; padding: 16px 20px; }
+.theme-list p { font-size: 0.78rem; color: #8B7A3C; letter-spacing: 0.1em; margin-bottom: 8px; font-family: 'Noto Sans JP', sans-serif; }
+.theme-list ul { list-style: none; }
+.theme-list ul li { font-size: 0.85rem; color: #5a5a5a; padding: 3px 0; padding-left: 14px; position: relative; }
+.theme-list ul li::before { content: ''; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; border-radius: 50%; background: #8B7A3C; }
+
+/* 各回の流れ */
+.session-flow { margin-top: 2rem; }
+.session-step { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 24px; }
+.session-step:last-child { margin-bottom: 0; }
+.step-num { width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, #A89060, #C4A96A); color: #fff; font-family: 'Noto Serif JP', serif; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+.step-body h3 { font-size: 0.95rem; margin-bottom: 6px; }
+.step-body p { font-size: 0.875rem; line-height: 1.9; color: #6a6a6a; }
+
+/* サポート */
+.support-cards { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 2rem; }
+.support-card { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 32px; border: 1px solid rgba(196,169,106,0.2); }
+.support-card h3 { font-size: 1rem; color: #C4A96A; margin-bottom: 12px; }
+.support-card p { font-size: 0.875rem; line-height: 2; color: #c0b8a8; }
+.support-card .note-box { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 14px 16px; margin-top: 12px; font-size: 0.8rem; color: #8a8a8a; line-height: 1.9; }
+.support-list { list-style: none; margin-top: 12px; }
+.support-list li { font-size: 0.85rem; color: #c0b8a8; padding: 5px 0; padding-left: 16px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.support-list li:last-child { border-bottom: none; }
+.support-list li::before { content: ''; position: absolute; left: 0; top: 14px; width: 5px; height: 5px; border-radius: 50%; background: #C4A96A; }
+.ng-list li::before { background: #8a8a8a; }
+.price-label { display: inline-block; font-size: 0.75rem; background: rgba(196,169,106,0.15); color: #C4A96A; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; }
+
+/* 価格 */
+.price-box { background: rgba(255,255,255,0.04); border-radius: 20px; padding: 48px 40px; text-align: center; border: 1px solid rgba(196,169,106,0.25); margin-top: 2rem; }
+.price-box .price-label-text { font-size: 0.75rem; letter-spacing: 0.2em; color: #C4A96A; margin-bottom: 8px; }
+.price-box .price-main { font-family: 'Noto Serif JP', serif; font-size: 3.2rem; color: #C4A96A; line-height: 1.2; }
+.price-box .price-main span { font-size: 1.2rem; }
+.price-box .price-desc { font-size: 0.85rem; color: #c0b8a8; margin-top: 16px; line-height: 2; }
+.price-includes { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
+.price-includes span { font-size: 0.78rem; padding: 5px 14px; border: 1px solid rgba(196,169,106,0.3); color: #C4A96A; border-radius: 20px; }
+
+/* 変化の言葉 */
+.change-block { background: linear-gradient(135deg, #2d2d2d 0%, #3d3530 100%); border-radius: 20px; padding: 48px 40px; margin-top: 2rem; }
+@media (max-width: 560px) { .change-block { padding: 36px 24px; } }
+.change-block p { font-size: 0.95rem; line-height: 2.4; color: #c0b8a8; text-align: center; }
+.change-block .em { font-family: 'Noto Serif JP', serif; color: #C4A96A; font-size: 1rem; }
+
+/* 受講前確認 */
+.check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 2rem; }
+@media (max-width: 560px) { .check-grid { grid-template-columns: 1fr; } }
+.check-card { border-radius: 14px; padding: 24px; }
+.check-card.yes { background: rgba(139,122,60,0.08); border: 1px solid rgba(139,122,60,0.2); }
+.check-card.caution { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); }
+.check-card h4 { font-size: 0.85rem; margin-bottom: 12px; letter-spacing: 0.1em; }
+.check-card.yes h4 { color: #8B7A3C; }
+.check-card.caution h4 { color: #8a8a8a; }
+.check-card ul { list-style: none; }
+.check-card ul li { font-size: 0.85rem; padding: 5px 0; padding-left: 16px; position: relative; line-height: 1.7; border-bottom: 1px dashed rgba(139,122,60,0.1); }
+.check-card ul li:last-child { border-bottom: none; }
+.check-card.yes ul li::before { content: '✓'; position: absolute; left: 0; color: #8B7A3C; font-size: 0.75rem; }
+.check-card.caution ul li::before { content: '△'; position: absolute; left: 0; color: #aaa; font-size: 0.75rem; }
+
+/* FAQ */
+.faq-list { margin-top: 2rem; }
+.faq-item { background: #fff; border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(139,122,60,0.12); overflow: hidden; }
+.faq-q { width: 100%; background: none; border: none; padding: 20px 24px; text-align: left; cursor: pointer; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; color: #2d2d2d; letter-spacing: 0.04em; display: flex; justify-content: space-between; align-items: center; }
+.faq-q:hover { background: rgba(139,122,60,0.04); }
+.faq-q::after { content: '＋'; color: #8B7A3C; font-size: 1.1rem; flex-shrink: 0; margin-left: 12px; transition: transform 0.3s; }
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-a-inner { padding: 0 24px 20px; font-size: 0.875rem; line-height: 2; color: #6a6a6a; }
+
+/* メッセージ */
+.message-block { background: linear-gradient(135deg, #F3EDE4 0%, #EDE5D8 100%); border-radius: 20px; padding: 50px 40px; margin-top: 2rem; text-align: center; }
+@media (max-width: 560px) { .message-block { padding: 36px 24px; } }
+.message-block p { font-size: 0.95rem; line-height: 2.4; color: #5a5a5a; }
+.message-block .em { font-family: 'Noto Serif JP', serif; font-size: 1.05rem; color: #2d2d2d; }
+.message-block .closing { margin-top: 2rem; font-family: 'Noto Serif JP', serif; font-size: 1rem; color: #8B7A3C; line-height: 2.4; }
+
+/* フォーム */
+.form-section { background: #2d2d2d; padding: 80px 24px; }
+.form-summary { background: rgba(196,169,106,0.08); border: 1px solid rgba(196,169,106,0.25); border-radius: 16px; padding: 28px 32px; max-width: 560px; margin: 0 auto 2rem; }
+.form-summary ul { list-style: none; }
+.form-summary ul li { font-size: 0.85rem; color: #c0b8a8; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; }
+.form-summary ul li:last-child { border-bottom: none; }
+.form-summary .key { color: #C4A96A; min-width: 130px; flex-shrink: 0; font-size: 0.8rem; }
+.contact-form { background: rgba(255,255,255,0.04); border-radius: 16px; padding: 40px; border: 1px solid rgba(255,255,255,0.08); max-width: 560px; margin: 0 auto; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 0.8rem; color: #c0b8a8; letter-spacing: 0.1em; margin-bottom: 6px; }
+.form-group input, .form-group textarea { width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #FAF7F2; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; letter-spacing: 0.04em; transition: border-color 0.3s; outline: none; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(250,247,242,0.3); }
+.form-group input:focus, .form-group textarea:focus { border-color: rgba(196,169,106,0.5); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-submit { text-align: center; margin-top: 28px; }
+#form-status { text-align: center; margin-top: 1rem; color: #C4A96A; font-size: 0.9rem; display: none; }
+
+/* Footer */
+.footer { background: #1e1e1e; padding: 32px 24px; text-align: center; }
+.footer-logo { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; color: #c0b8a8; letter-spacing: 0.15em; margin-bottom: 8px; }
+.footer-copy { font-size: 0.7rem; color: #6a6a6a; letter-spacing: 0.1em; }
+.footer a { color: #C4A96A; text-decoration: none; font-size: 0.8rem; }
+
+/* Fade */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <a href="./index.html" class="logo">perche</a>
+  <a href="./index.html" class="back-btn">← サイトトップへ</a>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <p class="hero-label fade-in">3-Month Accompaniment Program</p>
+  <h1 class="fade-in">内なる声と歩む、<br>3か月伴走プログラム</h1>
+  <p class="hero-sub fade-in">呼吸・対話・内省を通して、<br>"本当の自分の声"を聴き直す3か月</p>
+  <div class="hero-questions fade-in">
+    <p>こんな感覚が出てくることはありませんか。</p>
+    <p class="q">「本当は、私はどうしたいんだろう」</p>
+    <p class="q">「このままでいいのかな」</p>
+    <p class="q">「自分の気持ちが分からなくなっている」</p>
+  </div>
+  <div class="hero-tags fade-in">
+    <span class="tag">1対1・個別</span>
+    <span class="tag">全12回・週1回</span>
+    <span class="tag">1回90分</span>
+    <span class="tag">Zoom開催</span>
+    <span class="tag">ディプロマ贈呈</span>
+    <span class="tag">1年間LINE相談付き</span>
+  </div>
+  <div class="fade-in">
+    <a href="#form" class="btn-gold">内なる声と歩む時間を申し込む</a>
+  </div>
+</section>
+
+<!-- 大切にしていること -->
+<section class="section">
+  <div class="container">
+    <p class="section-label fade-in">Our Value</p>
+    <h2 class="section-title fade-in">このプログラムで<br>大切にしていること</h2>
+    <div class="value-block fade-in">
+      <p>
+        この講座は、知識を一方的に学ぶための講座ではありません。<br>
+        また、誰かに正解を教えてもらうための時間でもありません。<br><br>
+        大切にするのは、<br>
+        <span class="value-accent">あなた自身の内側にある声に気づくことです。</span><br><br>
+        これまで抑えてきた気持ち。<br>
+        言葉にできなかった違和感。<br>
+        本当は大切にしたかった願い。<br>
+        もう卒業したい思考や行動のパターン。<br><br>
+        それらを、呼吸と対話を通して、少しずつ見つめ直していきます。
+      </p>
+      <div class="ok-text">
+        急いで変わろうとしなくて大丈夫です。<br>
+        無理に前向きにならなくても大丈夫です。<br><br>
+        この3か月は、<br>
+        あなたがあなた自身ともう一度つながるための時間です。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- こんな方に -->
+<section class="section section-alt">
+  <div class="container">
+    <p class="section-label fade-in">For You</p>
+    <h2 class="section-title fade-in">こんな方におすすめです</h2>
+    <div class="recommend-grid">
+      <div class="recommend-item fade-in">自分の本音が分からなくなっている</div>
+      <div class="recommend-item fade-in">人に合わせすぎて、自分の気持ちを後回しにしてきた</div>
+      <div class="recommend-item fade-in">これからの生き方を見つめ直したい</div>
+      <div class="recommend-item fade-in">感情や思考のクセを整理したい</div>
+      <div class="recommend-item fade-in">呼吸や瞑想を通して、自分を整える習慣を身につけたい</div>
+      <div class="recommend-item fade-in">単発の気づきではなく、継続的に変化を育てたい</div>
+      <div class="recommend-item fade-in">安心できる伴走者と一緒に、自分の内側を見つめたい</div>
+      <div class="recommend-item fade-in">自分の経験や学びを、今後誰かの支援にも活かしていきたい</div>
+    </div>
+  </div>
+</section>
+
+<!-- 目指すこと -->
+<section class="section section-dark">
+  <div class="container">
+    <p class="section-label section-label-light fade-in">Goal</p>
+    <h2 class="section-title section-title-light fade-in">このプログラムで<br>目指すこと</h2>
+    <p style="text-align:center;font-size:0.9rem;color:#c0b8a8;margin-bottom:2rem;" class="fade-in">目指すのは、劇的に別人になることではありません。<br>自分の内側の声に気づき、その声を大切にしながら選択できる自分に戻ること。</p>
+    <div class="goal-grid">
+      <div class="goal-item fade-in">自分の本音や違和感に気づけるようになる</div>
+      <div class="goal-item fade-in">感情に振り回されるのではなく、観察できるようになる</div>
+      <div class="goal-item fade-in">呼吸を使って、自分を整える方法が分かる</div>
+      <div class="goal-item fade-in">他人軸ではなく、自分軸で選ぶ感覚が育つ</div>
+      <div class="goal-item fade-in">心の中の思い込みやパターンに気づける</div>
+      <div class="goal-item fade-in">自分にとって大切な価値観が明確になる</div>
+      <div class="goal-item fade-in" style="grid-column: 1 / -1;">日常の中で、自分との対話ができるようになる</div>
+    </div>
+  </div>
+</section>
+
+<!-- プログラム概要 -->
+<section class="section">
+  <div class="container">
+    <p class="section-label fade-in">Overview</p>
+    <h2 class="section-title fade-in">プログラム概要</h2>
+    <div class="summary-box fade-in">
+      <h3>内なる声と歩む、3か月伴走プログラム</h3>
+      <ul class="summary-list">
+        <li><span class="key">期間</span>3か月</li>
+        <li><span class="key">回数</span>週1回／全12回</li>
+        <li><span class="key">時間</span>1回90分</li>
+        <li><span class="key">形式</span>オンライン Zoom（1対1）</li>
+        <li><span class="key">受講料</span>360,000円</li>
+        <li><span class="key">修了後</span>ディプロマ贈呈</li>
+        <li><span class="key">終了後サポート</span>1年間のLINE相談無料</li>
+        <li><span class="key">フォロー</span>フォローセッション 1回3,000円／60分</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3か月の流れ -->
+<section class="section section-alt">
+  <div class="container">
+    <p class="section-label fade-in">3-Month Flow</p>
+    <h2 class="section-title fade-in">3か月の流れ</h2>
+    <div class="month-cards">
+      <div class="month-card fade-in">
+        <span class="month-badge">1か月目</span>
+        <h3>自分の現在地に気づく</h3>
+        <p class="subtitle">今の自分の状態を丁寧に見つめる</p>
+        <p>どんなことに疲れているのか。どんな場面で自分を抑えているのか。どんな役割を背負いすぎているのか。呼吸と対話を通して、まずは今の自分の現在地を確認します。</p>
+        <div class="theme-list">
+          <p>扱うテーマ例</p>
+          <ul>
+            <li>今の心と身体の状態を知る</li>
+            <li>自分が背負っている役割に気づく</li>
+            <li>無意識の我慢や違和感を見つける</li>
+            <li>感情を否定せずに受け取る</li>
+            <li>呼吸で安心感をつくる</li>
+          </ul>
+        </div>
+      </div>
+      <div class="month-card fade-in">
+        <span class="month-badge">2か月目</span>
+        <h3>内なる声を聴き直す</h3>
+        <p class="subtitle">本音や願いに、静かに触れていく</p>
+        <p>「本当はどうしたい？」「何を大切にしたい？」「どんな生き方を選びたい？」すぐに答えが出なくても大丈夫です。問いを持ちながら過ごすことで、少しずつ内側の声が聞こえやすくなっていきます。</p>
+        <div class="theme-list">
+          <p>扱うテーマ例</p>
+          <ul>
+            <li>本音と建前を見分ける</li>
+            <li>自分の価値観を言語化する</li>
+            <li>過去の選択パターンに気づく</li>
+            <li>思考ではなく感覚から選ぶ</li>
+            <li>自分に必要な境界線を知る</li>
+          </ul>
+        </div>
+      </div>
+      <div class="month-card fade-in">
+        <span class="month-badge">3か月目</span>
+        <h3>自分の声を日常に活かす</h3>
+        <p class="subtitle">気づきを、日常の選択へつなげていく</p>
+        <p>自分の声に気づくだけでなく、その声をどう暮らしや人間関係、仕事、生き方に反映していくか。無理なく続けられるセルフケアや、自分との対話の習慣を整えていきます。</p>
+        <div class="theme-list">
+          <p>扱うテーマ例</p>
+          <ul>
+            <li>自分軸で選択する練習</li>
+            <li>日常に呼吸と瞑想を取り入れる</li>
+            <li>人間関係の中で自分を守る</li>
+            <li>これからの生き方を言語化する</li>
+            <li>3か月の変化を統合する</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 各回の流れ -->
+<section class="section">
+  <div class="container">
+    <p class="section-label fade-in">Each Session</p>
+    <h2 class="section-title fade-in">各回の基本的な流れ</h2>
+    <p class="lead fade-in">1回90分のセッションでは、その日の状態に合わせて進めていきます。</p>
+    <div class="session-flow">
+      <div class="session-step fade-in">
+        <span class="step-num">1</span>
+        <div class="step-body">
+          <h3>チェックイン</h3>
+          <p>今の心と身体の状態、前回からの変化、気づき、違和感を確認します。</p>
+        </div>
+      </div>
+      <div class="session-step fade-in">
+        <span class="step-num">2</span>
+        <div class="step-body">
+          <h3>呼吸・瞑想</h3>
+          <p>呼吸を整え、思考でいっぱいになった頭を少し休めます。身体の感覚に戻りながら、自分の内側に意識を向けていきます。</p>
+        </div>
+      </div>
+      <div class="session-step fade-in">
+        <span class="step-num">3</span>
+        <div class="step-body">
+          <h3>対話と内省ワーク</h3>
+          <p>その日のテーマに合わせて、対話や問いかけを通して内側を見つめます。必要に応じて、書くワークや振り返りも行います。</p>
+        </div>
+      </div>
+      <div class="session-step fade-in">
+        <span class="step-num">4</span>
+        <div class="step-body">
+          <h3>気づきの整理</h3>
+          <p>セッションで見えてきたことを言語化し、日常の中で意識するポイントを確認します。</p>
+        </div>
+      </div>
+      <div class="session-step fade-in">
+        <span class="step-num">5</span>
+        <div class="step-body">
+          <h3>次回までの実践</h3>
+          <p>次のセッションまでに取り組む小さな実践やセルフケアを決めます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 修了後サポート -->
+<section class="section section-dark">
+  <div class="container">
+    <p class="section-label section-label-light fade-in">After Support</p>
+    <h2 class="section-title section-title-light fade-in">講座終了後のサポート</h2>
+    <div class="support-cards">
+      <div class="support-card fade-in">
+        <h3>🎓 ディプロマ贈呈</h3>
+        <p>3か月のプログラムを修了された方には、講座終了後にディプロマを贈呈します。これは、単なる修了証ではなく、自分自身と丁寧に向き合い続けた証です。</p>
+        <div class="note-box">※ ディプロマは本プログラムの修了証です。国家資格や公的資格ではありません。</div>
+      </div>
+      <div class="support-card fade-in">
+        <h3>💬 1年間のLINE相談サポート</h3>
+        <p>講座終了後も、日常の中で迷いや揺れが出てくることがあります。ひとりで抱え込まず、気づきや心の動きを整理できるように、1年間LINEでの相談サポートをご利用いただけます。</p>
+        <p style="margin-top:12px;font-size:0.8rem;color:#C4A96A;">ご利用目安</p>
+        <ul class="support-list">
+          <li><span style="color:#C4A96A;min-width:80px;display:inline-block;">期間</span>講座終了後1年間</li>
+          <li><span style="color:#C4A96A;min-width:80px;display:inline-block;">回数</span>月2回まで</li>
+          <li><span style="color:#C4A96A;min-width:80px;display:inline-block;">返信</span>原則48時間以内</li>
+          <li><span style="color:#C4A96A;min-width:80px;display:inline-block;">対応日</span>平日中心</li>
+          <li><span style="color:#C4A96A;min-width:80px;display:inline-block;">形式</span>LINEメッセージ（1〜2往復程度）</li>
+        </ul>
+        <p style="margin-top:16px;font-size:0.8rem;color:#8a8a8a;">※ 緊急対応・医療相談・深夜早朝の即時返信・深い内省のセッション代わりとしての使用には対応しておりません。内容が深くなる場合は、フォローセッションをご案内します。</p>
+      </div>
+      <div class="support-card fade-in">
+        <span class="price-label">1回3,000円 ／ 60分</span>
+        <h3>🔄 フォローセッション</h3>
+        <p>講座終了後、必要に応じて60分のフォローセッションをご利用いただけます。3か月後に出てきた変化や迷いを整理したいとき、もう一度呼吸と対話で整えたいときにご利用ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 価格 -->
+<section class="section">
+  <div class="container">
+    <p class="section-label fade-in">Price</p>
+    <h2 class="section-title fade-in">受講料</h2>
+    <div style="background:#2d2d2d;border-radius:20px;padding:48px 40px;text-align:center;margin-top:2rem;" class="fade-in">
+      <p style="font-size:0.75rem;letter-spacing:0.2em;color:#C4A96A;margin-bottom:8px;">受講料</p>
+      <p style="font-family:'Noto Serif JP',serif;font-size:3.2rem;color:#C4A96A;line-height:1.2;">360,000<span style="font-size:1.2rem;">円</span></p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px;margin-bottom:20px;">
+        <span style="font-size:0.78rem;padding:5px 14px;border:1px solid rgba(196,169,106,0.3);color:#C4A96A;border-radius:20px;">全12回・週1回</span>
+        <span style="font-size:0.78rem;padding:5px 14px;border:1px solid rgba(196,169,106,0.3);color:#C4A96A;border-radius:20px;">1回90分</span>
+        <span style="font-size:0.78rem;padding:5px 14px;border:1px solid rgba(196,169,106,0.3);color:#C4A96A;border-radius:20px;">ディプロマ贈呈</span>
+        <span style="font-size:0.78rem;padding:5px 14px;border:1px solid rgba(196,169,106,0.3);color:#C4A96A;border-radius:20px;">1年間LINE相談無料</span>
+      </div>
+      <p style="font-size:0.875rem;color:#c0b8a8;line-height:2;">3か月かけて、自分の内側の声に気づき、<br>日常の中で選び直せる力を育てていくための<br>継続的な伴走です。</p>
+    </div>
+    <div class="change-block fade-in">
+      <p>
+        変わらなきゃ。前向きにならなきゃ。もっと頑張らなきゃ。<br><br>
+        そうやって自分を追い立てるのではなく、<br>
+        この講座では、まず自分の内側の声を聴くことから始めます。<br><br>
+        <span class="em">本当は疲れていた。本当は断りたかった。<br>
+        本当はもっと自由に選びたかった。<br>
+        本当は、自分の人生を自分で歩きたかった。</span><br><br>
+        その声に気づくことは、弱さではありません。<br>
+        自分を取り戻すための、とても大切な始まりです。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 受講前確認 -->
+<section class="section section-alt">
+  <div class="container">
+    <p class="section-label fade-in">Check Before Applying</p>
+    <h2 class="section-title fade-in">受講前に<br>確認していただきたいこと</h2>
+    <div class="check-grid fade-in">
+      <div class="check-card yes">
+        <h4>このような方におすすめ</h4>
+        <ul>
+          <li>自分と向き合う時間を本気で持ちたい方</li>
+          <li>日常でも小さな実践を続けたい方</li>
+          <li>丁寧な変化を大切にしたい方</li>
+          <li>感情や思考のパターンを見つめる準備がある方</li>
+        </ul>
+      </div>
+      <div class="check-card caution">
+        <h4>合わない場合もあります</h4>
+        <ul>
+          <li>誰かにすべての答えを決めてほしい方</li>
+          <li>短期間で劇的な変化だけを求める方</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <p class="section-label fade-in">FAQ</p>
+    <h2 class="section-title fade-in">よくある質問</h2>
+    <div class="faq-list fade-in">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">瞑想が初めてでも受講できますか？</button>
+        <div class="faq-a"><div class="faq-a-inner">はい。初心者の方でも受講していただけます。呼吸を感じることから、無理なく丁寧に進めていきます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">うまく話せるか不安です。</button>
+        <div class="faq-a"><div class="faq-a-inner">まとまって話せなくても大丈夫です。言葉にならない感覚や「何を話せばいいか分からない」という状態も含めて、一緒に整理していきます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">3か月で何が変わりますか？</button>
+        <div class="faq-a"><div class="faq-a-inner">変化の感じ方には個人差があります。この3か月では、自分の本音や違和感に気づき、呼吸で自分を整え、自分の選択を見直していく力を育てていきます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">ディプロマは資格ですか？</button>
+        <div class="faq-a"><div class="faq-a-inner">ディプロマは本プログラムを修了したことを示す修了証です。国家資格や公的資格ではありません。自分自身と向き合い、学びを修了した証としてお渡しします。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">LINE相談はいつでも送っていいですか？</button>
+        <div class="faq-a"><div class="faq-a-inner">メッセージはご都合のよいタイミングで送っていただけます。返信は原則48時間以内、平日中心に行います。深夜・早朝の即時対応や緊急対応は行っておりません。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">LINE相談はどのくらい使えますか？</button>
+        <div class="faq-a"><div class="faq-a-inner">講座終了後1年間、月2回までを目安にご利用いただけます。1回の相談につき1〜2往復程度のやり取りを想定しています。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">フォローセッションは必須ですか？</button>
+        <div class="faq-a"><div class="faq-a-inner">必須ではありません。必要な方のみ、講座終了後にご利用いただけます。1回60分／3,000円で、その後の変化や迷いを整理する時間としてご活用ください。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- メッセージ -->
+<section class="section section-alt">
+  <div class="container">
+    <p class="section-label fade-in" style="text-align:center;">Message</p>
+    <div class="message-block fade-in">
+      <p>
+        あなたの中には、<br>
+        ずっと前から小さく響いていた声があるかもしれません。<br><br>
+        でも、日々の忙しさや役割の中で、<br>
+        その声は聞こえにくくなっていたのかもしれません。<br><br>
+        <span class="em">周りに合わせること。期待に応えること。<br>ちゃんとすること。頑張り続けること。</span><br><br>
+        それらを続けているうちに、いつの間にか、<br>
+        「私はどうしたいのか」が分からなくなってしまうことがあります。<br><br>
+        この3か月は、そんな自分を責める時間ではありません。<br>
+        むしろ、これまで頑張ってきた自分に気づき、<br>
+        これからは自分の声も大切にしていくための時間です。
+      </p>
+      <p class="closing">
+        呼吸を整え、心の奥にある声に耳を澄ませ、<br>
+        自分の人生をもう一度、自分の手に戻していく。<br><br>
+        その歩みを、3か月間、丁寧に伴走します。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- フォーム -->
+<section class="form-section" id="form">
+  <div class="container">
+    <p class="section-label fade-in" style="text-align:center;color:#C4A96A;">Apply</p>
+    <h2 class="section-title section-title-light fade-in">お申し込み</h2>
+    <p style="text-align:center;font-size:0.9rem;color:#c0b8a8;margin-bottom:2rem;" class="fade-in">内なる声と歩む、3か月伴走プログラムへの参加をご希望の方は、<br>下記フォームよりお申し込みください。</p>
+    <div class="form-summary fade-in">
+      <ul>
+        <li><span class="key">期間・回数</span>3か月 ／ 週1回・全12回</li>
+        <li><span class="key">時間・形式</span>1回90分 ／ Zoom（1対1）</li>
+        <li><span class="key">受講料</span>360,000円</li>
+        <li><span class="key">修了後</span>ディプロマ贈呈</li>
+        <li><span class="key">終了後1年間</span>LINE相談無料（月2回まで）</li>
+        <li><span class="key">フォロー</span>1回60分 ／ 3,000円</li>
+      </ul>
+    </div>
+    <form class="contact-form fade-in" action="https://formspree.io/f/xojrkypk" method="POST" id="programForm">
+      <input type="hidden" name="申し込み種別" value="3か月伴走プログラム">
+      <div class="form-group">
+        <label for="name">お名前</label>
+        <input type="text" id="name" name="name" placeholder="山田 花子" required>
+      </div>
+      <div class="form-group">
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="message">ひとこと（任意）</label>
+        <textarea id="message" name="message" placeholder="今の状態や、このプログラムに興味を持ったきっかけなど、お気軽にどうぞ"></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-gold">内なる声と歩む時間を申し込む</button>
+      </div>
+      <p id="form-status">✉️ 送信しました！追ってご連絡いたします。</p>
+    </form>
+    <p style="text-align:center;margin-top:2rem;font-size:0.82rem;color:#8a8a8a;">
+      本当の自分の声を、もう一度、丁寧に聴いていきたい方へ。<br>
+      percheが、あなたの3か月の歩みに静かに伴走します。
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="footer-logo">perche</p>
+  <p style="margin-bottom:8px;"><a href="./index.html">← サイトトップへ戻る</a></p>
+  <p class="footer-copy">&copy; 2025 perche. All rights reserved.</p>
+</footer>
+
+<script>
+window.addEventListener('scroll', function() {
+  document.getElementById('header').classList.toggle('header-scrolled', window.scrollY > 50);
+});
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry, i) {
+    if (entry.isIntersecting) {
+      setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var answer = item.querySelector('.faq-a');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i) {
+    i.classList.remove('open');
+    i.querySelector('.faq-a').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+var programForm = document.getElementById('programForm');
+if (programForm) {
+  programForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(programForm);
+    fetch(programForm.action, {
+      method: 'POST', body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        document.getElementById('form-status').style.display = 'block';
+        programForm.reset();
+      } else {
+        alert('送信に失敗しました。もう一度お試しください。');
+      }
+    }).catch(function() {
+      alert('送信に失敗しました。もう一度お試しください。');
+    });
+  });
+}
+</script>
+</body>
+</html>
