@@ -337,6 +337,49 @@
     font-size: 1rem;
   }
 
+  .line-prompt {
+    background: #06C755;
+    border-radius: 18px;
+    padding: 28px 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .line-prompt .line-lead {
+    font-size: .78rem;
+    color: rgba(255,255,255,.85);
+    letter-spacing: .1em;
+    margin-bottom: 10px;
+  }
+  .line-prompt .line-body {
+    color: #fff;
+    font-size: .95rem;
+    line-height: 1.75;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .line-prompt .line-keyword {
+    display: inline-block;
+    background: rgba(255,255,255,.2);
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+  }
+  .btn-line {
+    display: inline-block;
+    background: #fff;
+    color: #06C755;
+    border-radius: 50px;
+    padding: 13px 36px;
+    font-size: .92rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: .06em;
+    transition: all .2s;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn-line:hover { background: #e8f8ee; }
+
   .btn-retry {
     display: block;
     width: 100%;
@@ -436,6 +479,7 @@
     </div>
     <div class="result-message" id="result-message"></div>
     <div class="result-cta" id="result-cta"></div>
+    <div class="line-prompt" id="result-line-prompt"></div>
     <button class="btn-retry" onclick="retry()">もう一度診断する</button>
   </div>
 </div>
@@ -521,6 +565,7 @@ const results = {
     illust: "🌑",
     title: "まだ、声は眠っている",
     label: "心の声が聞こえない",
+    lineKeyword: "タイプ1",
     message: `あなたの内なる声は、消えてしまったわけじゃありません。<br><br>
 長い間、気づかないふりをしてきたことで、声がだんだん小さくなってしまっているだけ。自分の気持ちがわからなくなるのは、あなたが弱いからじゃなくて、それだけ一生懸命に「こうあるべき」を生きてきた証拠です。<br><br>
 その眠っている声に、少しずつ光を当てていきましょう。焦らなくて大丈夫。まずは、声が存在することに気づくことから、一緒に始めませんか。`,
@@ -537,6 +582,7 @@ const results = {
     illust: "🌒",
     title: "声は聞こえてる。\nでも、怖くて見ないふり",
     label: "心の声は聞こえてるけど、無視してる",
+    lineKeyword: "タイプ2",
     message: `あなたはちゃんと、自分の声が聞こえています。<br><br>
 それなのに「こんなこと思っちゃいけない」「わがままかな」と、声にふたをしてしまっていませんか？<br><br>
 その声は、あなたの本音です。封じ込めるのではなく、じっくりと耳を傾けることで、あなたらしい選択が少しずつ見えてきます。声を聞くことは、わがままじゃない。自分を大切にすることなんです。`,
@@ -553,6 +599,7 @@ const results = {
     illust: "🌓",
     title: "声はわかってる。\nでも、足が動かない",
     label: "心の声はわかるけど、動けない",
+    lineKeyword: "タイプ3",
     message: `「こうしたい」という気持ちはちゃんとある。でも、一歩踏み出すのが怖い。失敗が怖い。誰かに何か言われるのが怖い。<br><br>
 その怖さは、あなたの声を大切にしたい気持ちの裏返しです。<br><br>
 動けない自分を責めなくていい。その「動けない」には必ず理由があって、そこを一緒に丁寧に見ていくことで、自然と足が動き始める瞬間がきます。`,
@@ -569,6 +616,7 @@ const results = {
     illust: "🌕",
     title: "あなたの声は、\nすでに輝いている",
     label: "心の声を大事にしてる",
+    lineKeyword: "タイプ4",
     message: `あなたはすでに、自分の内なる声と対話する力を持っています。それはとても素晴らしいことです。<br><br>
 これからもその感覚を育て続けながら、もっと豊かに、もっと自由に自分らしく生きることができます。<br><br>
 percheでは、そんなあなたのさらなる輝きを、一緒に育んでいきたいと思っています。仲間たちとの対話の中で、新しい自分に出会いませんか。`,
@@ -660,6 +708,13 @@ function showResult() {
         </a>
       `).join('')}
     </div>
+  `;
+
+  const lineUrl = `https://line.me/R/oaMessage/@707xjgoy/?text=${encodeURIComponent(r.lineKeyword)}`;
+  document.getElementById('result-line-prompt').innerHTML = `
+    <p class="line-lead">＼ もっと深く知りたい方へ ／</p>
+    <p class="line-body">LINEで <span class="line-keyword">${r.lineKeyword}</span> と送ると<br>あなたのタイプへの深掘りメッセージが届きます🌙</p>
+    <a href="${lineUrl}" class="btn-line">💬 LINEで送ってみる</a>
   `;
 
   // Update progress bar to 100%
